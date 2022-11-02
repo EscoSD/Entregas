@@ -10,8 +10,6 @@ import java.nio.channels.FileChannel;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
-import java.util.HashSet;
-import java.util.Set;
 
 public class ejNIO {
 
@@ -25,13 +23,9 @@ public class ejNIO {
 
 			canalIn = rafIn.getChannel();
 
-			Set<StandardOpenOption> options = new HashSet<>();
-			options.add(StandardOpenOption.CREATE);
-			options.add(StandardOpenOption.APPEND);
-
 			Path path = Paths.get("copiaRegistro.dat");
 
-			canalOut = FileChannel.open(path, options);
+			canalOut = FileChannel.open(path, StandardOpenOption.CREATE, StandardOpenOption.APPEND);
 
 			buffer = ByteBuffer.allocate(512);
 
