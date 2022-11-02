@@ -14,13 +14,18 @@ import java.util.ArrayList;
 
 public class Acciones {
 
+	/**
+	 * Método que se encarga de almacenar la información, tanto en el área normal como el área de sinónimos.
+	 * @param raf Un RandomAccessFile ya creado, para evitar problemas al manejar un fichero.
+	 * @param dj El objeto Doujinshi que contiene la información a almacenar.
+	 */
 	public static void insert(RandomAccessFile raf, Doujinshi dj) {
 
 		try (DataOutputStream dos = new DataOutputStream(new FileOutputStream("duplicados.dat", true))) {
 
 			raf.seek((long) (dj.getCode() - 1) * Doujinshi.DOUJIN_SIZE);
 
-			if (raf.readInt()!=0) {
+			if (raf.readInt() != 0) {
 				dos.writeInt(dj.getCode());
 				dos.writeUTF(dj.getName());
 				dos.writeInt(dj.getPages());
@@ -39,6 +44,12 @@ public class Acciones {
 		}
 	}
 
+	/**
+	 * Método que acepta un código y devuelve un array con todos los Doujinshis almacenados con ese código.
+	 * @param raf RandomAccessFile previamente creado
+	 * @param searchCode
+	 * @return
+	 */
 	public static Doujinshi[] search(RandomAccessFile raf, int searchCode) {
 
 		Doujinshi[] array = new Doujinshi[0];
@@ -58,7 +69,7 @@ public class Acciones {
 				list.add(new Doujinshi(code, name, pages, prize));
 			}
 
-			dupesCheck(dis, list, searchCode);
+			obtencionDuplicados(dis, list, searchCode);
 
 			array = new Doujinshi[list.size()];
 
@@ -75,7 +86,7 @@ public class Acciones {
 		return array;
 	}
 
-	private static void dupesCheck(DataInputStream dis, ArrayList<Doujinshi> list, int id) {
+	private static void obtencionDuplicados(DataInputStream dis, ArrayList<Doujinshi> list, int id) {
 
 		int code;
 		try {

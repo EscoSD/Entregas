@@ -24,7 +24,6 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 
 /**
- *
  * @author ciclosm
  */
 public class Menu extends JFrame {
@@ -238,6 +237,7 @@ public class Menu extends JFrame {
 	 * Método que se activa al presionar el botón de Búsqueda,
 	 * generará una ventana que muestre los datos encontrados.
 	 * En caso de no encontrar datos, avisará con una ventana.
+	 *
 	 * @param evt El ActionEvent que genera la pulsación del botón.
 	 */
 	private void buscarButtonActionPerformed(java.awt.event.ActionEvent evt) {
@@ -250,7 +250,7 @@ public class Menu extends JFrame {
 
 			if (array.length > 0) {
 				superString = new StringBuilder();
-				for (Doujinshi dj: array)
+				for (Doujinshi dj : array)
 					superString.append(dj.toString()).append("\n");
 			}
 
@@ -269,6 +269,7 @@ public class Menu extends JFrame {
 	 * Método que se activa al presionar el botón de Borrar,
 	 * generará una ventana con un listado que contenga la información encontrada y disponible para eliminar.
 	 * En caso de no encontrar datos, avisará con una ventana.
+	 *
 	 * @param evt El ActionEvent que genera la pulsación del botón.
 	 */
 	private void borrarButtonActionPerformed(java.awt.event.ActionEvent evt) {
@@ -300,6 +301,7 @@ public class Menu extends JFrame {
 	 * Método que se activa al presionar el botón de Añadir,
 	 * se introducirán los datos al fichero, si la información es correcta.
 	 * En caso de introducir datos con formato incorrecto, se lanzará una ventana de advertencia.
+	 *
 	 * @param evt El ActionEvent que genera la pulsación del botón.
 	 */
 	private void inputButtonActionPerformed(java.awt.event.ActionEvent evt) {
@@ -338,6 +340,7 @@ public class Menu extends JFrame {
 
 	/**
 	 * main autogenerado por NetBeans
+	 *
 	 * @param args Los parámetros de inicialización del programa.
 	 */
 	public static void main(String[] args) {
@@ -350,7 +353,7 @@ public class Menu extends JFrame {
 				}
 			}
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
-		         UnsupportedLookAndFeelException ex) {
+				 UnsupportedLookAndFeelException ex) {
 			java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		}
 		//</editor-fold>

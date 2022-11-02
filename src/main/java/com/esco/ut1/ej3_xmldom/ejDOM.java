@@ -130,12 +130,11 @@ public class ejDOM {
 				Node nodo = list.item(i);
 				Element element = (Element) nodo;
 
-				System.out.print(element.getElementsByTagName("code").item(0).getTextContent() + ".- ");                      // Varias formas para lo mismo
+				System.out.print(element.getElementsByTagName("code").item(0).getTextContent() + ".- ");
 				System.out.println(element.getElementsByTagName("name").item(0).getTextContent());
 				System.out.println(element.getElementsByTagName("prize").item(0).getTextContent() + "€");
 				System.out.println(element.getElementsByTagName("pages").item(0).getTextContent() + " páginas\n");
 			}
-
 
 		} catch (ParserConfigurationException | IOException | SAXException e) {
 			e.printStackTrace();
