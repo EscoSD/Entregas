@@ -23,15 +23,30 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
-      <dependency>
+      <!--<dependency>
           <groupId>jakarta.xml.bind</groupId>
           <artifactId>jakarta.xml.bind-api-parent</artifactId>
           <version>4.0.0</version>
-      </dependency>
+      </dependency>-->
     <dependency>
       <groupId>com.sun.xml.bind</groupId>
       <artifactId>jaxb-impl</artifactId>
       <version>4.0.1</version>
     </dependency>
+      <dependency>
+          <groupId>org.postgresql</groupId>
+          <artifactId>postgresql</artifactId>
+          <version>42.5.0</version>
+      </dependency>
+      <dependency>
+          <groupId>commons-dbcp</groupId>
+          <artifactId>commons-dbcp</artifactId>
+          <version>1.4</version>
+      </dependency>
+      <dependency>
+          <groupId>commons-pool</groupId>
+          <artifactId>commons-pool</artifactId>
+          <version>1.6</version>
+      </dependency>
   </dependencies>
 </project>
