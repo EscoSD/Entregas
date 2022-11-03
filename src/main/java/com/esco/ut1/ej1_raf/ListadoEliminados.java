@@ -11,6 +11,11 @@ public class ListadoEliminados extends JFrame {
 	private final JList<Doujinshi> list;
 	private final RandomAccessFile raf;
 
+	/**
+	 * Constructor de la lista que mostrará los Doujinshi a eliminar.
+	 * @param array Array contenedor de los datos obtenidos.
+	 * @param raf RandomAccessFile ya creado para evitar problemas.
+	 */
 	public ListadoEliminados(Doujinshi[] array, RandomAccessFile raf) {
 
 		this.raf = raf;
@@ -36,7 +41,7 @@ public class ListadoEliminados extends JFrame {
 
 	private void buttonActionPerformed(ActionEvent e) {
 
-		if (list.getSelectedIndices().length == 0) {
+		if (list.getSelectedIndices().length == 0) {	// Si se pulsa el botón de eliminar sin seleccionar ningún valor, saltará una ventana de advertencia.
 			JOptionPane jop = new JOptionPane("-Selecciona algún Doujin por favor.", JOptionPane.WARNING_MESSAGE);
 			JDialog dialog = jop.createDialog("Doujinshi");
 			dialog.setVisible(true);

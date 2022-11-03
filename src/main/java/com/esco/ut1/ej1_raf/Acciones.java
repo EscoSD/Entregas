@@ -46,9 +46,9 @@ public class Acciones {
 
 	/**
 	 * Método que acepta un código y devuelve un array con todos los Doujinshis almacenados con ese código.
-	 * @param raf RandomAccessFile previamente creado
-	 * @param searchCode
-	 * @return
+	 * @param raf RandomAccessFile previamente creado.
+	 * @param searchCode Código del Doujinshi a buscar.
+	 * @return El array contenedor de todos los Doujinshi con mismo código encontrados.
 	 */
 	public static Doujinshi[] search(RandomAccessFile raf, int searchCode) {
 
@@ -86,6 +86,12 @@ public class Acciones {
 		return array;
 	}
 
+	/**
+	 * Método que rellena un ArrayList con los Doujinshi de mismo código almacenados en el área de duplicados.
+	 * @param dis DataInputStream que recorre el área de duplicados.
+	 * @param list ArrayList que almacena los Doujinshis con el código deseado.
+	 * @param id Código de los Doujinshis que se quieren obtener.
+	 */
 	private static void obtencionDuplicados(DataInputStream dis, ArrayList<Doujinshi> list, int id) {
 
 		int code;
