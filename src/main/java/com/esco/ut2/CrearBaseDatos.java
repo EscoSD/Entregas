@@ -71,4 +71,3 @@ public class CrearBaseDatos {
         sentencia.close();
     }
 }
-//first, next, last, movetoinsertrow, absolute

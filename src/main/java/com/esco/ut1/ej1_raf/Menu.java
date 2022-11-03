@@ -339,7 +339,7 @@ public class Menu extends JFrame {
 	}
 
 	/**
-	 * main autogenerado por NetBeans
+	 * main autogenerado por NetBeans.
 	 *
 	 * @param args Los parámetros de inicialización del programa.
 	 */

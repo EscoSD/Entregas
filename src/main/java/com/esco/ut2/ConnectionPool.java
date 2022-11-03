@@ -22,12 +22,10 @@ public class ConnectionPool {
     }
 
     public static ConnectionPool getInstance() {
-        if (pool == null) {
+        if (pool == null)
             pool = new ConnectionPool();
-			return pool;
-		}
 
-		return null;
+        return pool;
     }
 
     public Connection getConnection() {
