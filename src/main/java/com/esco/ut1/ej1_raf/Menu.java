@@ -278,13 +278,12 @@ public class Menu extends JFrame {
 			int id = Integer.parseInt(buscarTextField.getText());
 
 			Doujinshi[] array = Acciones.search(raf, id);
-			String str = "No se ha encontrado.";
 
-			if (array != null) {
-
+			if (array != null)
 				new ListadoEliminados(array, raf);
 
-			} else {
+			else {
+				String str = "No se ha encontrado.";
 				JOptionPane jop = new JOptionPane(str);
 				JDialog dialog = jop.createDialog("Doujinshi");
 				dialog.setVisible(true);

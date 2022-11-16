@@ -7,7 +7,7 @@ import java.io.*;
 
 public class ListadoEliminados extends JFrame {
 
-	public Doujinshi[] selection;
+	public Doujinshi[] selection;	// Array que contendrá los elementos seleccionados por el usuario.
 	private final JList<Doujinshi> list;
 	private final RandomAccessFile raf;
 
@@ -32,19 +32,24 @@ public class ListadoEliminados extends JFrame {
 
 		button.addActionListener(this::buttonActionPerformed);
 
-
 		setLocationRelativeTo(null);
 		pack();
 		setVisible(true);
 
 	}
 
+	/**
+	 * Método que gestiona las acciones del botón de eliminar.
+	 * @param e	ActionEvent generado por la pulsación del botón.
+	 */
 	private void buttonActionPerformed(ActionEvent e) {
 
-		if (list.getSelectedIndices().length == 0) {	// Si se pulsa el botón de eliminar sin seleccionar ningún valor, saltará una ventana de advertencia.
+		// Si se pulsa el botón de eliminar sin seleccionar ningún valor, saltará una ventana de advertencia.
+		if (list.getSelectedIndices().length == 0) {
 			JOptionPane jop = new JOptionPane("-Selecciona algún Doujin por favor.", JOptionPane.WARNING_MESSAGE);
 			JDialog dialog = jop.createDialog("Doujinshi");
 			dialog.setVisible(true);
+
 		} else {
 			selection = list.getSelectedValuesList().toArray(new Doujinshi[0]);
 			borrar();
@@ -52,15 +57,18 @@ public class ListadoEliminados extends JFrame {
 			JOptionPane jop = new JOptionPane("-Eliminado con éxito.");
 			JDialog dialog = jop.createDialog("Doujinshi");
 			dialog.setVisible(true);
+
+			// Método que cierra la ventana una vez completado el borrado.
 			this.dispose();
 		}
 
 	}
 
+	/**
+	 * Método que se encarga de borrar datos del área normal
+	 * o comprobar si los datos a borrar pertenecen al área de sinónimos.
+	 */
 	private void borrar() {
-
-		File duplicados = new File("duplicados.dat");
-		File temporal = new File("temporal.dat");
 
 		try {
 
@@ -77,12 +85,12 @@ public class ListadoEliminados extends JFrame {
 				raf.writeInt(0);
 				raf.writeDouble(0);
 			} else
-				manejoDatos(0, temporal, duplicados);
+				manejoDatos(0);
 
 
 			if (selection.length > 1)
 				for (int i = 1; i < selection.length; i++)
-					manejoDatos(i, temporal, duplicados);
+					manejoDatos(i);
 
 		} catch (IOException e) {
 			e.printStackTrace(System.out);
@@ -90,12 +98,22 @@ public class ListadoEliminados extends JFrame {
 
 	}
 
+	/**
+	 * Método que gestiona el borrado del área de sinónimos.
+	 * Se copian todos los elementos del fichero a un fichero adicional salvo aquel a borrar,
+	 * después se borra el fichero original y se renombra el nuevo fichero.
+	 * @param pos Posición del elemento a borrar.
+	 * @throws IOException Si ocurre cualquier IOException
+	 */
 	@SuppressWarnings("InfiniteLoopStatement")
-	private void manejoDatos(int pos, File temporal, File duplicados) throws IOException {
+	private void manejoDatos(int pos) throws IOException {
+
+		File archivoViejo = new File("duplicados.dat");
+		File archivoNuevo = new File("temporal.dat");
 
 		try (
-				DataInputStream dis = new DataInputStream(new FileInputStream(duplicados));
-				DataOutputStream dos = new DataOutputStream(new FileOutputStream(temporal))
+				DataInputStream dis = new DataInputStream(new FileInputStream(archivoViejo));
+				DataOutputStream dos = new DataOutputStream(new FileOutputStream(archivoNuevo))
 		) {
 			int code, pages;
 			String name;
@@ -115,9 +133,9 @@ public class ListadoEliminados extends JFrame {
 				}
 			}
 
-		} catch (EOFException e) {
-			duplicados.delete();
-			temporal.renameTo(duplicados);
+		} catch (EOFException e) {	// Cuando se termina la copia. Borramos el fichero y renombramos.
+			archivoViejo.delete();
+			archivoNuevo.renameTo(archivoViejo);
 		}
 	}
 }

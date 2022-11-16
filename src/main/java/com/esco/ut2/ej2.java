@@ -9,7 +9,7 @@ public class ej2 {
 
 	public static void main(String[] args) {
 
-		String sqlStatement = "Select * from doujinshi where code=1 or 1=1";
+		String sqlStatement = "Select * from doujinshi";
 
 		try (Connection grande = ConnectionPool.getInstance().getConnection();
 			Statement stmt = grande.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,

@@ -3,7 +3,8 @@ realiza una aplicación que genere un fichero XML DOM y después lo muestre por 
 
 package com.esco.ut1.ej3_xmldom;
 
-import com.esco.ut1.ej1_raf.Doujinshi; // Importamos la clase Doujinshi que se encuentra en el paquete del ejercicio 1
+// Importamos la clase Doujinshi que se encuentra en el paquete del ejercicio 1
+import com.esco.ut1.ej1_raf.Doujinshi;
 
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -46,6 +47,7 @@ public class ejDOM {
 
 		try (RandomAccessFile raf = new RandomAccessFile("RegistroD.dat", "rw")) {
 
+			// Rellenamos un ArrayList con todos los objetos Doujin almacenados en el RAF.
 			for (int i = 1; i <= 100; i++) {
 				raf.seek((i - 1) * 50);
 
@@ -81,7 +83,7 @@ public class ejDOM {
 		Element root = document.createElement("doujinshis");
 		document.getDocumentElement().appendChild(root);
 
-		for (Doujinshi doujin : list) {
+		for (Doujinshi doujin : list) {	// Escribimos todos los doujins en un XML.
 
 			nodoDoujin = document.createElement("doujinshi");
 			root.appendChild(nodoDoujin);

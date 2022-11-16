@@ -23,6 +23,7 @@ public class ejJAXB {
 		ArrayList<Doujinshi> list = new ArrayList<>();
 
 		try (RandomAccessFile raf = new RandomAccessFile("RegistroD.dat", "rw")) {
+			// Rellenamos un ArrayList con todos los objetos Doujin almacenados en el RAF.
 			for (int i = 1; i <= 100; i++) {
 				raf.seek((i - 1) * 50);
 
