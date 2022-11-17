@@ -11,8 +11,8 @@ public class ej2 {
 
 		String sqlStatement = "Select * from doujinshi";
 
-		try (Connection grande = ConnectionPool.getInstance().getConnection();
-			Statement stmt = grande.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,
+		try (Connection conn = ConnectionPool.getInstance().getConnection();
+			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,
 					ResultSet.CONCUR_UPDATABLE)) {
 
 			ResultSet resultSet = stmt.executeQuery(sqlStatement);

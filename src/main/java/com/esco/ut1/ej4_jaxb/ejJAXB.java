@@ -61,7 +61,6 @@ public class ejJAXB {
 			e.printStackTrace();
 		}
 	}
-
 	public static void lecturaJAXB() {
 
 		try {
