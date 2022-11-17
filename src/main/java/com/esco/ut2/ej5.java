@@ -7,17 +7,24 @@ import java.sql.*;
 public class ej5 {
 	public static void main(String[] args) {
 
-		String nombre = "Caracol";
-		String function = "{call name_from_precio (5)}";
-		String procedure = "{call insert_data (?, ?, ?) values (\"Ramón dice hola\", 34, 54)}";
+		String function = "{? = call name_from_precio(1)}";
+		String procedure = "call insert_data(\'Salmonete\', 34, 54)";
 
 		try (Connection conn = ConnectionPool.getInstance().getConnection()) {
 
+			String salida;
+
 			CallableStatement statement = conn.prepareCall(function);
+			statement.registerOutParameter(1, Types.VARCHAR);
 			statement.execute();
 
-			//statement = conn.prepareCall(procedure);
-			//statement.execute();	No se admiten procedures
+			System.out.println(statement.getString(1));
+
+
+			statement = conn.prepareCall(procedure);
+			statement.execute();
+
+			System.out.println("Se han insertado los datos.");
 
 			statement.close();
 
