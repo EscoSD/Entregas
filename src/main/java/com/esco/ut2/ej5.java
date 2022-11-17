@@ -8,11 +8,9 @@ public class ej5 {
 	public static void main(String[] args) {
 
 		String function = "{? = call name_from_precio(1)}";
-		String procedure = "call insert_data(\'Salmonete\', 34, 54)";
+		String procedure = "call insert_data('Salmonete', 34, 54)";
 
 		try (Connection conn = ConnectionPool.getInstance().getConnection()) {
-
-			String salida;
 
 			CallableStatement statement = conn.prepareCall(function);
 			statement.registerOutParameter(1, Types.VARCHAR);
